@@ -8,7 +8,7 @@ import "./index.css";
 import Root, { loader as rootLoader } from "./routes/root.jsx";
 import ErrorPage from "./error-page";
 import Contact from "./routes/contact";
-
+import EditContact from "./routes/edit";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +18,14 @@ const router = createBrowserRouter([
     loader: rootLoader,
     children: [
       {
-        path: "contacts/:contactId",
+        path: ":contactId",
         element: <Contact />,
       },
     ],
   },
-]);
+], {
+  basename: "/contacts"
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -4,7 +4,7 @@ import {
   useLoaderData
 } from "react-router-dom";
 import { getContacts } from "../contacts";
-import Nav from "../components/Nav.jsx";
+import Sidebar from "../components/Sidebar.jsx";
 
 export async function loader() {
   const contacts = await getContacts();
@@ -17,7 +17,7 @@ export default function Root() {
   return (
     <>
       <div className="container">
-        <Nav />
+        <Sidebar />
         <div id="sidebar">
           <h1>Contacts</h1>
           <div>

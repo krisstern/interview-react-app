@@ -1,7 +1,6 @@
-// import { useState } from 'react';
-import '../nav.css'
+import '../Nav.css'
 
-function Nav() {
+function Sidebar() {
 
   return (
     <>
@@ -13,4 +12,4 @@ function Nav() {
   )
 }
 
-export default Nav;
+export default Sidebar;
