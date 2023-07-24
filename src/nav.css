@@ -1,0 +1,87 @@
+#sidebar2 {
+    width: 18rem;
+    background-color: #f7f7f7;
+    border-right: solid 1px #e3e3e3;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar2 > * {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+#sidebar2 h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 2rem 2rem 0 2rem;
+    border-top: 1px solid #e3e3e3;
+    line-height: 1;
+}
+
+#sidebar2 > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#sidebar2 nav {
+    flex: 1;
+    overflow: auto;
+    padding-top: 1rem;
+}
+
+#sidebar2 nav a span {
+    float: right;
+    color: #eeb004;
+}
+#sidebar2 nav a.active span {
+    color: inherit;
+}
+
+#sidebar2 nav .active i {
+    color: inherit;
+}
+
+#sidebar2 ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#sidebar2 li {
+    margin: 0.25rem 0;
+}
+
+#sidebar2 nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+
+    white-space: pre;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: inherit;
+    text-decoration: none;
+    gap: 1rem;
+}
+
+#sidebar2 nav a:hover {
+    background: #e3e3e3;
+}
+
+#sidebar2 nav a.active {
+    background: hsl(224, 98%, 58%);
+    color: white;
+}
+
+#sidebar2 nav a.pending {
+    color: hsl(224, 98%, 58%);
+}
