@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {
-  createBrowserRouter, createRoutesFromElements, Route,
+  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
@@ -11,11 +11,14 @@ import Root, {
 } from "./routes/root.jsx";
 import ErrorPage from "./error-page";
 import Contact, {
-  loader as contactLoader
+  loader as contactLoader,
+  action as contactAction
 } from "./routes/contact";
 import EditContact, {
   action as editAction
 } from "./routes/edit";
+import { action as destroyAction } from "./routes/destroy";
+import Index from "./routes/index";
 
 const router = createBrowserRouter([
   {
@@ -25,16 +28,22 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction,
     children: [
+      { index: true, element: <Index /> },
       {
         path: ":contactId",
         element: <Contact />,
         loader: contactLoader,
+        action: contactAction,
       },
       {
         path: ":contactId/edit",
         element: <EditContact/>,
         loader: contactLoader,
         action: editAction
+      },
+      {
+        path: ":contactId/destroy",
+        action: destroyAction,
       },
     ],
   },
