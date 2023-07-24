@@ -1,11 +1,7 @@
-# React + Vite
+# Interview Assignment based on React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a repository for hosting the source code for the assignment for the application of the Senior Frontend Developer role at SleekFlow of the applicant Kris Stern, to be submitted on July 30th, 2023.
+The author of this source code can be reached by email at krisstern@outlook.com. 
 
 ## To install dependencies
 Run:
@@ -20,7 +16,7 @@ npm run dev
 ```
 In this mode the frontend app will launch at http://localhost:5173/. 
 
-## To build and run in production mode
+## To build in production mode
 Run:
 ```shell
 npm run build
