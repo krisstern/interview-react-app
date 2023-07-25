@@ -13,7 +13,7 @@ export async function getContacts(query) {
     });
   if (!contacts) contacts = [];
   if (query) {
-    contacts = matchSorter(contacts, query, { keys: ["id"] });
+    contacts = matchSorter(contacts, query, { keys: ["name"] });
   }
   console.log("sorted contacts", contacts.sort(sortBy("id", "name")));
   await set(contacts);
@@ -23,10 +23,7 @@ export async function getContacts(query) {
 export async function getContact(contactId) {
   await fakeNetwork(`contact:${contactId}`);
   let contacts = await localforage.getItem("contacts");
-  console.log("contacts in getContact", contacts);
-  // let contact = contacts.find((contact) => contact.id === contactId);
-  let contact = contacts.find(obj => obj.id === parseInt(contactId));
-  console.log("out contact", contact);
+  let contact = contacts.find((contact) => contact.id === parseInt(contactId));
   return contact ?? null;
 }
 

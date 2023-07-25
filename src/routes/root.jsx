@@ -8,12 +8,15 @@ import {
 } from "react-router-dom";
 import { getContacts } from "../contacts";
 import Sidebar from "../components/Sidebar.jsx";
-import { useEffect } from "react";
+import {
+  useEffect,
+} from "react";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
+  console.log("q", q);
   return { contacts, q };
 }
 
@@ -22,12 +25,14 @@ export default function Root() {
   const navigation = useNavigation();
   const submit = useSubmit();
 
+  // Whether there is a query string in the search field
   const searching =
     navigation.location &&
     new URLSearchParams(navigation.location.search).has(
-      "q"
+"q"
     );
 
+  // Update search string for replacement
   useEffect(() => {
     document.getElementById("q").value = q;
   }, [q]);
