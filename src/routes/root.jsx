@@ -10,12 +10,6 @@ import { getContacts } from "../contacts";
 import Sidebar from "../components/Sidebar.jsx";
 import { useEffect } from "react";
 
-// export async function action({ params }) {
-//   const contact = await createContact(params.contactId);
-//   return { contact };
-//   return redirect(`/${contact.id}`);
-// }
-
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");

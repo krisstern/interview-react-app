@@ -393,3 +393,8 @@ i {
   align-items: center;
   justify-content: center;
 }
+
+.personal-info {
+  border: 1px solid #000000;
+  padding: 1rem 2rem 1rem 2rem;
+}
