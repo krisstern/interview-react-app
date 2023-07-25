@@ -220,7 +220,7 @@ i {
 #sidebar nav a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
   overflow: hidden;
 
   white-space: pre;
@@ -385,4 +385,11 @@ i {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.center-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

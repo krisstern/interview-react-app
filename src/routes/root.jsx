@@ -3,22 +3,18 @@ import {
   NavLink,
   useLoaderData,
   Form,
-  redirect,
   useNavigation,
   useSubmit
 } from "react-router-dom";
-import { getContacts, createContact } from "../contacts";
+import { getContacts } from "../contacts";
 import Sidebar from "../components/Sidebar.jsx";
 import { useEffect } from "react";
 
-export async function action() {
-  const contact = await createContact();
-  // return { contact };
-  return redirect(`/${contact.id}/edit`);
-}
-
-// export async function loader() {
-//   const contacts = await getContacts();
+// export async function action({ params }) {
+//   const contact = await createContact(params.contactId);
+//   return { contact };
+//   return redirect(`/${contact.id}`);
+// }
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -94,14 +90,29 @@ export default function Root() {
                             : ""
                       }
                     >
-                      {contact.first || contact.last ? (
+                      <span className={"center-items"}>
+                        <img
+                          key={contact.image}
+                          src={contact.image || null}
+                          width={42}
+                          height={42}
+                        />
+                      </span>
+                      {contact.name ? (
                         <>
-                          {contact.first} {contact.last}
+                          {contact.name}
                         </>
                       ) : (
                         <i>No Name</i>
-                      )}{" "}
-                      {contact.favorite && <span>★</span>}
+                      )}
+                      <br />
+                      {contact.species ? (
+                        <>
+                          {contact.species}
+                        </>
+                      ) : (
+                        <i>No Species</i>
+                      )}
                     </NavLink>
                   </li>
                 ))}
