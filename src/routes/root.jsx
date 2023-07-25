@@ -14,7 +14,7 @@ import { useEffect } from "react";
 export async function action() {
   const contact = await createContact();
   // return { contact };
-  return redirect(`${contact.id}/edit`);
+  return redirect(`/${contact.id}/edit`);
 }
 
 // export async function loader() {
@@ -85,7 +85,7 @@ export default function Root() {
                 {contacts.map((contact) => (
                   <li key={contact.id}>
                     <NavLink
-                      to={`${contact.id}`}
+                      to={`/${contact.id}`}
                       className={({ isActive, isPending }) =>
                         isActive
                           ? "active"
