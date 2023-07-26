@@ -8,14 +8,13 @@ export async function getContacts(query) {
   let contacts = await localforage.getItem("contacts");
   await axios.get("https://rickandmortyapi.com/api/character")
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       contacts = response.data.results;
     });
   if (!contacts) contacts = [];
   if (query) {
     contacts = matchSorter(contacts, query, { keys: ["name"] });
   }
-  console.log("sorted contacts", contacts.sort(sortBy("id", "name")));
   await set(contacts);
   return contacts.sort(sortBy("id", "name"));
 }
