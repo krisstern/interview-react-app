@@ -80,6 +80,11 @@ export default function Root() {
                 aria-live="polite"
               ></div>
             </Form>
+            <span>
+              <button className="clear-filter-btn">
+                <NavLink to="/" className="button" style={{ textDecoration: 'none' }}>Clear</NavLink>
+              </button>
+            </span>
           </div>
           <div>
             <Box sx={{ width: "50%" }}>

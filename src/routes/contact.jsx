@@ -9,6 +9,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import {useEffect, useState} from "react";
 
 export async function loader({ params }) {
+  console.log(params);
   const contact = await getContact(params.contactId);
   if (!contact) {
     throw new Response("", {
