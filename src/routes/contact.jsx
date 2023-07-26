@@ -23,18 +23,20 @@ export async function loader({ params }) {
 export default function Contact() {
   const {contact} = useLoaderData();
 
-  const [episodes, setEpisodes] = useState(null);
+  const [dataGridRows, setDataGridRows] = useState([]);
 
-  useEffect(() => {
-    let episodeArray = [];
+  useEffect( () => {
+    setDataGridRows([]);
     contact.episode.map(async (episodeUrl) => {
-      // console.log(episodeUrl);
+      console.log(episodeUrl);
+      let episodeData;
       await axios.get(episodeUrl)
-        .then((response) => {
-          // console.log(response?.data);
-          episodeArray.push(response?.data);
+        .then(async (response) => {
+          console.log(response);
+          episodeData = response.data;
         });
-      setEpisodes(episodeArray);
+      console.log("episodeData", episodeData);
+      setDataGridRows(dataGridRows => [...dataGridRows, episodeData]);
     });
   }, [contact]);
 
@@ -44,13 +46,13 @@ export default function Contact() {
       field: 'name',
       headerName: 'Name',
       width: 200,
-      editable: true,
+      sortable: true,
     },
     {
       field: 'air_date',
       headerName: 'Air Date',
-      width: 140,
-      editable: true,
+      width: 120,
+      sortable: true,
       valueGetter: (params) =>
         `${dayjs(params.row.air_date).format("MMM DD, YYYY")}`,
     },
@@ -58,14 +60,14 @@ export default function Contact() {
       field: 'episode',
       headerName: 'Episode',
       type: 'number',
-      width: 100,
-      editable: true,
+      width: 120,
+      sortable: true,
     },
     {
       field: 'created',
       headerName: 'Created Date',
       sortable: true,
-      width: 140,
+      width: 120,
       valueGetter: (params) =>
         `${dayjs(params.row.created).format("MMM DD, YYYY")}`,
     },
@@ -119,9 +121,9 @@ export default function Contact() {
           </p>
         </div>
         <br />
-        {episodes && <Box sx={{ height: 400, width: '100%' }}>
+        {dataGridRows && <Box sx={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={episodes}
+            rows={dataGridRows}
             columns={columns}
             autoHeight={true}
             initialState={{
@@ -134,9 +136,13 @@ export default function Contact() {
                 sortModel: [{ field: 'id', sort: 'asc' }],
               },
             }}
-            pageSizeOptions={[5]}
+            pageSizeOptions={[10]}
             checkboxSelection={false}
             disableRowSelectionOnClick
+            sx={{
+                borderRadius: 0,
+                border: "1px solid #000000"
+            }}
           />
         </Box>
         }
