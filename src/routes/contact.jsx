@@ -10,7 +10,6 @@ import {useEffect, useState} from "react";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
-  console.log("contact", contact);
   if (!contact) {
     throw new Response("", {
       status: 404,
@@ -28,14 +27,11 @@ export default function Contact() {
   useEffect( () => {
     setDataGridRows([]);
     contact.episode.map(async (episodeUrl) => {
-      console.log(episodeUrl);
       let episodeData;
       await axios.get(episodeUrl)
         .then(async (response) => {
-          console.log(response);
           episodeData = response.data;
         });
-      console.log("episodeData", episodeData);
       setDataGridRows(dataGridRows => [...dataGridRows, episodeData]);
     });
   }, [contact]);
@@ -122,6 +118,7 @@ export default function Contact() {
         </div>
         <br />
         {dataGridRows && <Box sx={{ height: 400, width: '100%' }}>
+          <h2>Episodes</h2>
           <DataGrid
             rows={dataGridRows}
             columns={columns}
