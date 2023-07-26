@@ -20,7 +20,7 @@ code {
 
 html,
 body {
-  height: unset;
+  height: 100vw;
   margin: 0;
   line-height: 1.5;
   color: #121212;
