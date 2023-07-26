@@ -3,7 +3,7 @@ import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 import axios from "axios";
 
-export async function getContacts(query) {
+export async function getContacts(query, status, gender) {
   await fakeNetwork(`getContacts:${query}`);
   let contacts = await localforage.getItem("contacts");
   await axios.get("https://rickandmortyapi.com/api/character")
@@ -12,10 +12,22 @@ export async function getContacts(query) {
     });
   if (!contacts) contacts = [];
   if (query) {
-    contacts = matchSorter(contacts, query, { keys: ["name"] });
+    contacts = matchSorter(contacts, query, {
+      keys: [{threshold: matchSorter.rankings.CONTAINS, key: "name"}]
+    });
+  }
+  if (status) {
+    contacts = matchSorter(contacts, status, {
+      keys: [{threshold: matchSorter.rankings.EQUAL, key: "status"}]
+    });
+  }
+  if (gender) {
+    contacts = matchSorter(contacts, gender, {
+      keys: [{threshold: matchSorter.rankings.EQUAL, key: "gender"}]
+    });
   }
   await set(contacts);
-  return contacts.sort(sortBy("id", "name"));
+  return contacts.sort(sortBy("id"));
 }
 
 export async function getContact(contactId) {

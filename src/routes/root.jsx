@@ -4,18 +4,26 @@ import {
   useLoaderData,
   Form,
   useNavigation,
-  useSubmit
+  useSubmit,
 } from "react-router-dom";
 import { getContacts } from "../contacts";
 import Sidebar from "../components/Sidebar.jsx";
 import {
-  useEffect,
+  useEffect, useState
 } from "react";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import PropTypes from 'prop-types';
 
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
-  const contacts = await getContacts(q);
+  const status = url.searchParams.get("status");
+  const gender = url.searchParams.get("gender");
+  const contacts = await getContacts(q, status, gender);
   return { contacts, q };
 }
 
@@ -23,6 +31,9 @@ export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
   const submit = useSubmit();
+
+  const [status, setStatus] = useState("");
+  const [gender, setGender] = useState("");
 
   // Whether there is a query string in the search field
   const searching =
@@ -70,8 +81,53 @@ export default function Root() {
               ></div>
             </Form>
           </div>
+          <div>
+            <Box sx={{ width: "50%" }}>
+              <FormControl fullWidth>
+                <InputLabel id="status-select-label">Status</InputLabel>
+                <Select
+                  labelId="status-select-label"
+                  id="status"
+                  value={status}
+                  label="Status"
+                  onChange={(event) => {
+                    setStatus(event.target.value);
+                    document.location.search = "status=" + event.target.value;
+                  }}
+                  defaultValue={status}
+                >
+                  <MenuItem value={""}><em>None</em></MenuItem>
+                  <MenuItem value={"alive"}>Alive</MenuItem>
+                  <MenuItem value={"dead"}>Dead</MenuItem>
+                  <MenuItem value={"unknown"}>Unknown</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: "50%" }}>
+              <FormControl fullWidth>
+                <InputLabel id="gender-select-label">Gender</InputLabel>
+                <Select
+                  labelId="gender-select-label"
+                  id="gender"
+                  value={gender}
+                  label="Gender"
+                  onChange={(event) => {
+                    setGender(event.target.value);
+                    document.location.search = "gender=" + event.target.value;
+                  }}
+                  defaultValue={gender}
+                >
+                  <MenuItem value={""}><em>None</em></MenuItem>
+                  <MenuItem value={"female"}>Female</MenuItem>
+                  <MenuItem value={"male"}>Male</MenuItem>
+                  <MenuItem value={"genderless"}>Genderless</MenuItem>
+                  <MenuItem value={"unknown"}>Unknown</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
           <nav>
-            {contacts.length ? (
+            {contacts.length > 0 ? (
               <ul>
                 {contacts.map((contact) => (
                   <li key={contact.id}>
@@ -92,6 +148,7 @@ export default function Root() {
                           width={42}
                           height={42}
                           style={{borderRadius: "50%"}}
+                          alt={"Contact image"}
                         />
                       </span>
                       {contact.name ? (
@@ -131,4 +188,9 @@ export default function Root() {
       </div>
     </>
   );
+}
+
+Root.propTypes = {
+  url: PropTypes.any,
+  request: PropTypes.any
 }
