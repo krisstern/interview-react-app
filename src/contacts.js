@@ -8,7 +8,6 @@ export async function getContacts(query) {
   let contacts = await localforage.getItem("contacts");
   await axios.get("https://rickandmortyapi.com/api/character")
     .then((response) => {
-      // console.log(response.data);
       contacts = response.data.results;
     });
   if (!contacts) contacts = [];

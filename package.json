@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.2",
+    "@mui/x-data-grid": "^6.10.1",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "localforage": "^1.10.0",

@@ -20,7 +20,7 @@ code {
 
 html,
 body {
-  height: 100%;
+  height: unset;
   margin: 0;
   line-height: 1.5;
   color: #121212;
@@ -244,7 +244,7 @@ i {
 
 #detail {
   flex: 1;
-  padding: 2rem 4rem;
+  padding: 2rem 2rem;
   width: 100%;
 }
 
