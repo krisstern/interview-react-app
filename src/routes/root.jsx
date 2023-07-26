@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import PropTypes from 'prop-types';
+import localforage from "localforage";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -96,6 +97,7 @@ export default function Root() {
                   value={status}
                   label="Status"
                   onChange={(event) => {
+                    event.preventDefault();
                     setStatus(event.target.value);
                     document.location.search = "status=" + event.target.value;
                   }}
@@ -145,6 +147,9 @@ export default function Root() {
                             ? "pending"
                             : ""
                       }
+                      onClick={() => {
+                        localforage.setItem("contact", contact.id);
+                      }}
                     >
                       <span className={"center-items"}>
                         <img
