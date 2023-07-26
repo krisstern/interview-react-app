@@ -1,7 +1,7 @@
 {
   "name": "interview-react-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -39,5 +39,8 @@
   ],
   "rules": {
     "react-refresh/only-export-components": "warn"
+  },
+  "engines": {
+    "node": ">=16 <19"
   }
 }
