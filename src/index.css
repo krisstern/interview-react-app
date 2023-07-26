@@ -294,7 +294,7 @@ i {
   height: 12rem;
   background: #c8c8c8;
   margin-right: 2rem;
-  border-radius: 1.5rem;
+  border-radius: 50%;
   object-fit: cover;
 }
 

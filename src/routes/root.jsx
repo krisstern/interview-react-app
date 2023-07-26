@@ -92,6 +92,7 @@ export default function Root() {
                           src={contact.image || null}
                           width={42}
                           height={42}
+                          style={{borderRadius: "50%"}}
                         />
                       </span>
                       {contact.name ? (
