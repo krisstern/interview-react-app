@@ -14,7 +14,7 @@ Run:
 ```shell
 npm run dev
 ```
-In this mode the frontend app will launch at http://localhost:5173/. 
+In this mode the frontend app will launch at http://localhost:5173/contact/. 
 
 ## To build in production mode
 Run:
